@@ -1,0 +1,22 @@
+version: '3.7'
+
+services:
+  gitlab:
+    restart: always
+    image: gitlab/gitlab-ee:${SERVICE_GITLAB_IMAGE_VERSION}
+    ports:
+      - 0.0.0.0:${SERVICE_GITLAB_HTTP_PORT}:80
+      # - 0.0.0.0:${SERVICE_GITLAB_SSH_PORT}:22
+    hostname: ${SERVICE_GITLAB_COMPANY}
+    volumes:
+      - ${SERVICE_CONFIGS}/gitlab:/etc/gitlab
+      - ${SERVICE_DATA}/gitlab:/var/opt/gitlab
+      - ${SERVICE_LOGS}/gitlab:/var/log/gitlab
+      # - type: bind
+      #   source: /var/run/docker.sock
+      #   target: /var/run/docker.sock
+
+networks:
+  default:
+    external: true
+    name: compose-ingress

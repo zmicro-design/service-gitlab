@@ -1,0 +1,3 @@
+NAME=gitlab
+VERSION=v0.0.0
+DESCRIPTION="GitLab Service"

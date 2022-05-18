@@ -1,0 +1,15 @@
+#!/bin/bash
+
+load inquirer
+
+check() {
+  if [ "$DEBUG" = "true" ]; then
+    log::info "[DEBUG][service][gitlab]: $SERVICE_CONFIG"
+    cat $SERVICE_CONFIG
+  fi
+
+  config::check_or_set SERVICE_GITLAB_COMPANY text $SERVICE_CONFIG
+  config::check_or_set SERVICE_GITLAB_HTTP_PORT text $SERVICE_CONFIG
+}
+
+check $@
