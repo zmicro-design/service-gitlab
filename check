@@ -1,6 +1,8 @@
 #!/bin/bash
 
-load inquirer
+service::config_set() {
+  config::check_or_set $@ $SERVICE_CONFIG
+}
 
 check() {
   if [ "$DEBUG" = "true" ]; then
@@ -8,8 +10,9 @@ check() {
     cat $SERVICE_CONFIG
   fi
 
-  config::check_or_set SERVICE_GITLAB_COMPANY text $SERVICE_CONFIG
-  config::check_or_set SERVICE_GITLAB_HTTP_PORT text $SERVICE_CONFIG
+  service::config_set SERVICE_GITLAB_COMPANY text
+  service::config_set SERVICE_GITLAB_HTTP_PORT text
+  service::config_set SERVICE_GITLAB_ROOT_PASSWORD text
 }
 
 check $@

@@ -16,6 +16,8 @@ services:
       # - type: bind
       #   source: /var/run/docker.sock
       #   target: /var/run/docker.sock
+    environment:
+      GITLAB_ROOT_PASSWORD: ${SERVICE_GITLAB_ROOT_PASSWORD}
 
 networks:
   default:
