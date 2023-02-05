@@ -26,6 +26,10 @@ check() {
     if [ -z "$SERVICE_GITLAB_DOREAMON_CLIENT_SECRET" ]; then
       service::config_set SERVICE_GITLAB_DOREAMON_CLIENT_SECRET text
     fi
+
+    if [ -z "$SERVICE_GITLAB_DOREAMON_LOGIN_BUTTON_NAME" ]; then
+      service::config_set SERVICE_GITLAB_DOREAMON_LOGIN_BUTTON_NAME text
+    fi
   fi
 
   # @TODO cannot input :
