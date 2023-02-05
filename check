@@ -14,6 +14,20 @@ check() {
   service::config_set SERVICE_GITLAB_HTTP_PORT text
   service::config_set SERVICE_GITLAB_ROOT_PASSWORD text
 
+  if [ -z "$SERVICE_GITLAB_DOREAMON_ENABLE" ]; then
+    service::config_set SERVICE_GITLAB_DOREAMON_ENABLE yesno
+  fi
+
+  if [ "$SERVICE_GITLAB_DOREAMON_ENABLE" = "true" ]; then
+    if [ -z "$SERVICE_GITLAB_DOREAMON_CLIENT_ID" ]; then
+      service::config_set SERVICE_GITLAB_DOREAMON_CLIENT_ID text
+    fi
+
+    if [ -z "$SERVICE_GITLAB_DOREAMON_CLIENT_SECRET" ]; then
+      service::config_set SERVICE_GITLAB_DOREAMON_CLIENT_SECRET text
+    fi
+  fi
+
   # @TODO cannot input :
   service::config_set SERVICE_GITLAB_ROOT_URL text
 }
